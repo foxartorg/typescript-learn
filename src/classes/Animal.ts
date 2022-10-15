@@ -1,10 +1,14 @@
+import { Dog } from './Dog';
+import { Cat } from './Cat';
+
 interface AnimalInterface {
 	voice: string;
 }
 
 export abstract class Animal implements AnimalInterface {
-	private static readonly _hp: number;
-	private readonly _attack: number;
+
+	static readonly _hp: number;
+	_attack: number;
 	private readonly _defense: number;
 
 	constructor(name: string, hp: number, attack: number, defense: number) {
@@ -14,7 +18,7 @@ export abstract class Animal implements AnimalInterface {
 		this._defense = defense;
 	}
 
-	private _hp: number;
+	_hp: number;
 	get hp(): number {
 		return this._hp;
 	}
@@ -33,10 +37,12 @@ export abstract class Animal implements AnimalInterface {
 	}
 
 	public abstract get voice(): string;
-
-	attack(animal: Animal, count = 1): void {
-		animal._hp = animal._hp - this._attack * count;
+	attack(count = 1, dog1: Dog, cat1: Cat): void {
+		dog1._hp = dog1._hp - cat1._attack * count;
 	}
+	// abstract attack(dog1:Dog, cat1: Cat, _count = 1) void{
+	// dog1._hp = dog1._hp - cat1._attack * count;
+	// }
 
 	public hello(): string {
 		return (
@@ -46,4 +52,6 @@ export abstract class Animal implements AnimalInterface {
 			`Defense: ${this._defense}\n`
 		);
 	}
+
+
 }
